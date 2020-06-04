@@ -89,18 +89,18 @@ Route::resource('task', 'Frontend\TaskController');
 
 Route::get('task','Frontend\TaskController@index');
 
-Route::get('task/create','Frontend\TaskController@create');
+// Route::get('task/create','Frontend\TaskController@create');
 
-Route::get('task/store/{request}','Frontend\TaskController@store');
+// Route::get('task/store/{request}','Frontend\TaskController@store');
 
-Route::get('task/edit/{id?}','Frontend\TaskController@edit');
+// Route::get('task/edit/{id?}','Frontend\TaskController@edit');
 
-Route::get('task/update/{request}','Frontend\TaskController@update');
+// Route::get('task/update/{request}','Frontend\TaskController@update');
 
 Route::get('task/destroy/{id?}','Frontend\TaskController@destroy')->name('task.destroy');
-Route::get('task/complete/{id?}','Frontend\TaskController@complete')->name('task.complete');
-Route::get('task/recomplete/{id?}','Frontend\TaskController@reComplete')->name('task.reComplete');
+// Route::get('task/complete/{id?}','Frontend\TaskController@complete')->name('task.complete');
+// Route::get('task/recomplete/{id?}','Frontend\TaskController@reComplete')->name('task.reComplete');
 
 
 
-Route::get('task/show/{id?}','Frontend\TaskController@show');
+// Route::get('task/show/{id?}','Frontend\TaskController@show');

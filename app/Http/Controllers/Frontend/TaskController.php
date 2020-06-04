@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Frontend;
-
+use App\Task;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -18,7 +18,15 @@ class TaskController extends Controller
         // dd('ham index');
         // return view('frontend.tasks.index');
         // echo "day la index";
-        return view('listwork');
+        // return view('listwork');
+        $tasks = Task::where('status',1)->orderBy('id','desc')->get();  
+
+
+
+        return view('hwlession5')->with([
+            'tasks'=> $tasks
+
+        ]);
     }
 
     /**
@@ -49,8 +57,22 @@ class TaskController extends Controller
 
 
 
-        $input= $request->only('name','deadline');
-        dd($input);
+        // $input= $request->only('name','deadline');
+        // dd($input);
+        $name = $request->get('name');
+        
+        $deadline = $request->get('deadline');
+        $content = $request->get('content');
+
+        $task = new Task();
+        $task->name = $name;
+        $task->status = 1;
+        
+        $task->deadline = $deadline;
+        $task->content = $content;
+        $task->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -99,7 +121,10 @@ class TaskController extends Controller
     public function destroy($id)
     {
 
-        dd('Đã xóa công việc ' . $id);
+        // dd('Đã xóa công việc ' . $id);
+        $task = Task::find($id);
+        $task->delete();
+        return redirect()->back();
     }
 
     public function complete($id){
