@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-	return view('welcome');
-});
+// Route::get('/', function () {
+// 	return view('welcome');
+// });
 
 
 //----------------------------------------------------------------------------------------------------------------
@@ -85,9 +85,9 @@ Route::get('/', function () {
 // Route::get('task/destroy/{id?}','Frontend\TaskController@destroy')->name('task.destroy');
 // Route::get('task/complete/{id?}','Frontend\TaskController@complete')->name('task.complete');
 // Route::get('task/recomplete/{id?}','Frontend\TaskController@reComplete')->name('task.reComplete');
-Route::resource('task', 'Frontend\TaskController');
+// Route::resource('task', 'Frontend\TaskController');
 
-Route::get('task','Frontend\TaskController@index');
+// Route::get('task','Frontend\TaskController@index');
 
 // Route::get('task/create','Frontend\TaskController@create');
 
@@ -97,10 +97,23 @@ Route::get('task','Frontend\TaskController@index');
 
 // Route::get('task/update/{request}','Frontend\TaskController@update');
 
-Route::get('task/destroy/{id?}','Frontend\TaskController@destroy')->name('task.destroy');
+// Route::get('task/destroy/{id?}','Frontend\TaskController@destroy')->name('task.destroy');
 // Route::get('task/complete/{id?}','Frontend\TaskController@complete')->name('task.complete');
 // Route::get('task/recomplete/{id?}','Frontend\TaskController@reComplete')->name('task.reComplete');
 
 
 
 // Route::get('task/show/{id?}','Frontend\TaskController@show');
+
+
+//-------------------------------------HW LESSION 6-----------------------
+Route::post('task','Frontend\TaskController@store')->name('task.store');
+Route::get('task/create','Frontend\TaskController@create')->name('task.create');
+Route::get('task','Frontend\TaskController@index')->name('task.index');
+Route::get('task/destroy/{id?}','Frontend\TaskController@destroy')->name('task.destroy');
+Route::get('task/show/{id?}','Frontend\TaskController@show')->name('task.show');
+Route::get('task/edit/{id?}', 'Frontend\TaskController@edit')->name('task.edit');
+Route::match(['put','patch'], 'task/{task}', 'Frontend\TaskController@update')->name('task.update');
+
+Route::get('task/complete/{id?}','Frontend\TaskController@complete')->name('task.complete');
+Route::get('task/recomplete/{id?}','Frontend\TaskController@reComplete')->name('task.reComplete');

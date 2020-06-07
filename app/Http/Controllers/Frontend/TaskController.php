@@ -19,12 +19,17 @@ class TaskController extends Controller
         // return view('frontend.tasks.index');
         // echo "day la index";
         // return view('listwork');
-        $tasks = Task::where('status',1)->orderBy('id','desc')->get();  
+        // $tasks = Task::where('status',1)->orderBy('id','desc')->get();  
 
 
 
-        return view('hwlession5')->with([
-            'tasks'=> $tasks
+        // return view('hwlession5')->with([
+        //     'tasks'=> $tasks
+
+        // ]);
+        $tasks = Task::all();
+        return view('tasks.index')->with([
+            'tasks' => $tasks,
 
         ]);
     }
@@ -37,10 +42,11 @@ class TaskController extends Controller
     public function create()
     {
         // echo "Day la create";
-        dd('day la create');
+        // dd('day la create');
 
-        // return view('tasks.create');
-        return view('listwork');
+        // // return view('tasks.create');
+        // return view('listwork');
+        return view('tasks.create');
 
     }
 
@@ -59,21 +65,38 @@ class TaskController extends Controller
 
         // $input= $request->only('name','deadline');
         // dd($input);
-        $name = $request->get('name');
+        // $name = $request->get('name');
         
-        $deadline = $request->get('deadline');
-        $content = $request->get('content');
+        // $deadline = $request->get('deadline');
+        // $content = $request->get('content');
 
-        $task = new Task();
-        $task->name = $name;
-        $task->status = 1;
+        // $task = new Task();
+        // $task->name = $name;
+        // $task->status = 1;
         
-        $task->deadline = $deadline;
-        $task->content = $content;
-        $task->save();
+        // $task->deadline = $deadline;
+        // $task->content = $content;
+        // $task->save();
 
-        return redirect()->back();
-    }
+        // return redirect()->back();
+       $name = $request->get('name');
+       
+       $deadline = $request->get('deadline');
+       $content = $request->get('content');
+       $priority = $request->get('priority');
+        // dd($request->all());
+
+       $task = new Task();
+       $task->name = $name;
+       $task->status = 1;
+       $task->priority = $priority;
+       
+       $task->deadline = $deadline;
+       $task->content = $content;
+       $task->save();
+
+       return redirect()->route('task.index');
+   }
 
     /**
      * Display the specified resource.
@@ -96,8 +119,12 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        echo "Day la edit".$id;
-      
+        // echo "Day la edit".$id;
+        $task = Task::find($id);
+        return view('tasks.edit')->with([
+            'task' => $task
+        ]);
+        
     }
 
     /**
@@ -109,7 +136,20 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd('đây là update'.$request);
+        $name = $request->get('name');
+        $deadline = $request->get('deadline');
+        $content = $request->get('content');
+        $priority = $request->get('priority');
+        // Cập nhật
+        $task = Task::find($id);
+        $task->name = $name;
+        // $task->status = 1;
+        $task->priority = $priority;
+
+        $task->content = $content;
+        $task->deadline = $deadline;
+        $task->save();
+        return redirect()->route('task.index');
     }
 
     /**
@@ -122,20 +162,31 @@ class TaskController extends Controller
     {
 
         // dd('Đã xóa công việc ' . $id);
+        // $task = Task::find($id);
+        // $task->delete();
+        // return redirect()->back();
         $task = Task::find($id);
         $task->delete();
-        return redirect()->back();
+        // return redirect()->back();
+        return redirect()->route('task.index');
     }
 
     public function complete($id){
 
+      $task  = Task::find($id);
+      $task->status =2;
+      $task->save();
+        // dd('Status la:'. $task->status);
+      return redirect()->route('task.index');
       
-        dd('hoan thanh' . $id);
 
-    }
+  }
 
-    public function reComplete($id){
-        dd('sua lai' . $id ) ;
+  public function reComplete($id){
+    $task = Task::find($id);
+    $task->status = 1;
+    $task->save();
+    return redirect()->route('task.index');
 
-    } 
+} 
 }
