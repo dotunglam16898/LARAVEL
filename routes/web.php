@@ -107,13 +107,23 @@ use Illuminate\Support\Facades\Route;
 
 
 //-------------------------------------HW LESSION 6-----------------------
-Route::post('task','Frontend\TaskController@store')->name('task.store');
-Route::get('task/create','Frontend\TaskController@create')->name('task.create');
-Route::get('task','Frontend\TaskController@index')->name('task.index');
-Route::get('task/destroy/{id?}','Frontend\TaskController@destroy')->name('task.destroy');
-Route::get('task/show/{id?}','Frontend\TaskController@show')->name('task.show');
-Route::get('task/edit/{id?}', 'Frontend\TaskController@edit')->name('task.edit');
-Route::match(['put','patch'], 'task/{task}', 'Frontend\TaskController@update')->name('task.update');
+// Route::post('task','Frontend\TaskController@store')->name('task.store');
+// Route::get('task/create','Frontend\TaskController@create')->name('task.create');
+// Route::get('task','Frontend\TaskController@index')->name('task.index');
+// Route::get('task/destroy/{id?}','Frontend\TaskController@destroy')->name('task.destroy');
+// Route::get('task/show/{id?}','Frontend\TaskController@show')->name('task.show');
+// Route::get('task/edit/{id?}', 'Frontend\TaskController@edit')->name('task.edit');
+// Route::match(['put','patch'], 'task/{task}', 'Frontend\TaskController@update')->name('task.update');
 
-Route::get('task/complete/{id?}','Frontend\TaskController@complete')->name('task.complete');
-Route::get('task/recomplete/{id?}','Frontend\TaskController@reComplete')->name('task.reComplete');
+// Route::get('task/complete/{id?}','Frontend\TaskController@complete')->name('task.complete');
+// Route::get('task/recomplete/{id?}','Frontend\TaskController@reComplete')->name('task.reComplete');
+
+//---------------------------------HW LESSION 7-------------------------------------
+
+Route::get('dashboard','Backend\DashboardController@index')->name('backend.dashboard');
+
+Route::get('products','Backend\ProductController@index')->name('backend.product.index');
+Route::get('products/create','Backend\ProductController@create')->name('backend.product.create');
+
+Route::get('users','Backend\UserController@index')->name('backend.user.index');
+Route::get('users/create','Backend\UserController@create')->name('backend.user.create');
