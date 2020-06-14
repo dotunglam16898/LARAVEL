@@ -118,7 +118,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('task/complete/{id?}','Frontend\TaskController@complete')->name('task.complete');
 // Route::get('task/recomplete/{id?}','Frontend\TaskController@reComplete')->name('task.reComplete');
 
-//---------------------------------HW LESSION 7-------------------------------------
+//---------------------------------HW LESSION 7 + 8-------------------------------------
 
 Route::get('dashboard','Backend\DashboardController@index')->name('backend.dashboard');
 
@@ -127,3 +127,13 @@ Route::get('products/create','Backend\ProductController@create')->name('backend.
 
 Route::get('users','Backend\UserController@index')->name('backend.user.index');
 Route::get('users/create','Backend\UserController@create')->name('backend.user.create');
+
+
+
+Route::get('/','Frontend\HomeController@index')->name('frontend.index');
+
+
+
+
+
+
